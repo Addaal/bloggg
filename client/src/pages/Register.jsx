@@ -19,6 +19,7 @@ setInput(prev=>({...prev, [e.target.name]: e.target.value}));
   const handleSubmit = async e =>{ //async because is an api req
     e.preventDefault();  //prevents refreshing the page
     try{
+      
       const res = await axios.post("/auth/register", input)
       console.log(res)
       navigate("/login")

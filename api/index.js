@@ -4,6 +4,9 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import 'dotenv/config';
+
+
 
 const app = express();
  
@@ -31,6 +34,6 @@ app.use("/api/posts", postRoutes);
 
 let port = process.env.PORT || 8080;
 
-app.listen(port, () => {
+app.listen(8080, () => {
   console.log("Connected!");
 });
