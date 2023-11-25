@@ -32,8 +32,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
-let port = process.env.PORT || 8080;
+let PORT = process.env.PORT || 8080;
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
   console.log("Connected!");
 });
