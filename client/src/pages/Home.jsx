@@ -7,20 +7,24 @@ const Home = () => {
   const [posts, setPosts] = useState([])
 
   const category = useLocation().search
-  console.log(useLocation())
+  //console.log(useLocation())
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts${category}`);
+        const res = await axios.get(`https://app-blog-hopeitowkrs-fde410f2c677.herokuapp.com/api/posts${category}`);
+        console.log("aqui")
+        console.log(res)
         setPosts(res.data);
       } catch (err) {
+        console.log("este?")
         console.log(err);
       }
     }
     fetchData()
   }, [category])
 
+  console.log("here2")
   console.log(posts)
 
   const getText = (html) => {

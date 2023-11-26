@@ -5,10 +5,14 @@ import postRoutes from "./routes/posts.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import 'dotenv/config';
+import cors from "cors";
 
 
 
 const app = express();
+app.use(cors({
+  credentials : true
+}));
  
 app.use(express.json());
 app.use(cookieParser());
@@ -22,6 +26,17 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Accept, Authorization ");
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  next();
+});
+
+app.set("trust proxy", 1);
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
   const file = req.file;

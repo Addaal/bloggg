@@ -50,7 +50,7 @@ export const login = (req, res) => {
 
         const token =jwt.sign({id:data[0].id}, "jwtkey"); //cookie, ckeck the author of the post 
         const {password, ...other} = data[0];
-        res.cookie("access_token", token, {httpOnly:true}).status(200).json(other) //any script cant reach this cookie, only api request? 
+        res.cookie("access_token", token, {httpOnly:false}).status(200).json(other) //any script cant reach this cookie, only api request? 
 
         
     })  
