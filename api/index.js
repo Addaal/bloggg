@@ -43,6 +43,17 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
   res.status(200).json(file.filename);
 });
 
+app.get("/*", function(req,res){
+  res.sendFile(
+    path.join(__dirname, "/client/build/index.html"),
+    function(err){
+      if(err){
+        res.status(500).send(err);
+      }
+    }
+  )
+})
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
